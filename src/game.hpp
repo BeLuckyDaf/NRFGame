@@ -13,10 +13,18 @@ class Game {
   Context context_;
   std::unordered_map<std::string, std::shared_ptr<GameObject>> objects_;
 
- public:
-  void SetWindowSize(int width, int height);
-  void MoveObject(const std::string& name, int x, int y);
   void Render();
+
+ public:
+  Game(const std::string& name, int width, int height);
+
+  void Start();
+  void Loop();
+  void Exit();
+
+  void SetWindowSize(int width, int height);
+
+  void MoveObject(const std::string& name, int x, int y);
 
   template <typename ObjectType>
   void AddObject(const std::string& name, ObjectType&& object) {

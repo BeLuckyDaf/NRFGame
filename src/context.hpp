@@ -10,6 +10,7 @@ struct Context {
   SDL_Renderer* renderer;
 
   void Init(const std::string& window_name, int width, int height) {
+    SDL_Init(SDL_INIT_VIDEO);
     window = SDL_CreateWindow(window_name.c_str(), SDL_WINDOWPOS_CENTERED,
                               SDL_WINDOWPOS_CENTERED, width, height,
                               SDL_WINDOW_SHOWN);
@@ -17,6 +18,11 @@ struct Context {
     if (!renderer) {
       throw std::runtime_error(SDL_GetError());
     }
+  }
+
+  void Cleanup() {
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
   }
 };
 
