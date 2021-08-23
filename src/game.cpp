@@ -10,7 +10,7 @@ void Game::Start() {
   x = y = 0;
 }
 
-void Game::Logic() {
+void Game::Logic(float delta) {
   int m_x, m_y;
   SDL_GetMouseState(&m_x, &m_y);
   auto obj = GetObject<Sprite>("object");
