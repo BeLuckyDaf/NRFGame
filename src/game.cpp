@@ -6,7 +6,7 @@
 using namespace NRFGame;
 
 void Game::Start() {
-  AddObject("object", Sprite(context_, "planet.png", 160, 160));
+  AddObject("object", Sprite(context_, "examples/planet.png", 160, 160));
   x = y = 0;
 }
 
@@ -22,6 +22,7 @@ void Game::Logic(float delta) {
     y += target_y > y ? 1 : -1;
     MoveObject("object", x, y);
   }
+  std::cout << fmt::format("Mouse Position: {}, {}\n", m_x, m_y);
 }
 
 void Game::Exit() {}
