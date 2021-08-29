@@ -1,16 +1,15 @@
 #include "game.hpp"
 
-#include "SDL.h"
-#include "sprite.hpp"
+#include <sprite.hpp>
 
 using namespace NRFGame;
 
-void Game::Start() {
+void Game::Create() {
   AddObject("object", Sprite(context_, "examples/planet.png", 160, 160));
   x = y = 0;
 }
 
-void Game::Logic(float delta) {
+void Game::Update(float delta) {
   int m_x, m_y;
   SDL_GetMouseState(&m_x, &m_y);
   auto obj = GetObject<Sprite>("object");
@@ -25,4 +24,4 @@ void Game::Logic(float delta) {
   std::cout << fmt::format("Mouse Position: {}, {}\n", m_x, m_y);
 }
 
-void Game::Exit() {}
+void Game::Destroy() {}

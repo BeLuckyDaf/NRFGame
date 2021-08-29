@@ -40,7 +40,7 @@ void BaseGame::MoveObject(const std::string& name, int x, int y) {
 }
 
 void BaseGame::Run() {
-  Start();
+  Create();
   SDL_Event event;
   auto quit = false;
   auto target_delta = 13ms;
@@ -52,10 +52,10 @@ void BaseGame::Run() {
       }
     }
     auto current_update = SDL_GetPerformanceCounter();
-    Logic((current_update - last_update) /
-          (float)SDL_GetPerformanceFrequency() * 1000.0f);
+    Update((current_update - last_update) /
+           (float)SDL_GetPerformanceFrequency() * 1000.0f);
     last_update = current_update;
     Render();
   }
-  Exit();
+  Destroy();
 }

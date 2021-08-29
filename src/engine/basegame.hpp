@@ -5,10 +5,11 @@
 #include <unordered_map>
 
 #include "gameobject.hpp"
+#include "interfaces/update.hpp"
 
 namespace NRFGame {
 
-class BaseGame {
+class BaseGame : public interfaces::IUpdate {
  protected:
   Context context_;
   std::unordered_map<std::string, std::shared_ptr<GameObject>> objects_;
@@ -37,9 +38,9 @@ class BaseGame {
     return nullptr;
   }
 
-  virtual void Start() {}
-  virtual void Logic(float delta) {}
-  virtual void Exit() {}
+  virtual void Create() override {}
+  virtual void Update(float delta) override {}
+  virtual void Destroy() override {}
 
  public:
   BaseGame(const std::string& name, int width, int height);

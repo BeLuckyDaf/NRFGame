@@ -1,8 +1,7 @@
 #pragma once
 
+#include <basegame.hpp>
 #include <chrono>
-
-#include "basegame.hpp"
 
 namespace NRFGame {
 
@@ -14,9 +13,9 @@ class Game : public BaseGame {
   Game(const std::string& name, int width, int height)
       : BaseGame(name, width, height) {}
 
-  virtual void Start() override;
-  virtual void Logic(float delta) override;
-  virtual void Exit() override;
+  virtual void Create() override;
+  virtual void Update(float delta) override;
+  virtual void Destroy() override;
 };
 
 }  // namespace NRFGame
