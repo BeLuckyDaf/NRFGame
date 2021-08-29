@@ -5,8 +5,8 @@
 using namespace NRFGame;
 
 Sprite::Sprite(const Context& context, const std::string& path, int width,
-               int height) {
-  context_ = context;
+               int height)
+    : GameObject(context) {
   texture_ = IMG_LoadTexture(context_.renderer, path.c_str());
   if (!texture_) {
     throw std::runtime_error("Could not load texture");

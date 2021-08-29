@@ -2,6 +2,7 @@
 
 #include <string>
 
+#include "SDL.h"
 #include "gameobject.hpp"
 
 namespace NRFGame {

@@ -1,7 +1,6 @@
 #include "basegame.hpp"
 
 #include "SDL.h"
-#include "sprite.hpp"
 
 using namespace NRFGame;
 using namespace std::chrono_literals;
@@ -39,6 +38,12 @@ void BaseGame::MoveObject(const std::string& name, int x, int y) {
   }
 }
 
+void BaseGame::UpdateObjects(float delta) {
+  for (const auto& object : objects_) {
+    object.second->Update(delta);
+  }
+}
+
 void BaseGame::Run() {
   Create();
   SDL_Event event;
@@ -52,8 +57,10 @@ void BaseGame::Run() {
       }
     }
     auto current_update = SDL_GetPerformanceCounter();
-    Update((current_update - last_update) /
-           (float)SDL_GetPerformanceFrequency() * 1000.0f);
+    auto delta = (current_update - last_update) /
+                 (float)SDL_GetPerformanceFrequency() * 1000.0f;
+    Update(delta);
+    UpdateObjects(delta);
     last_update = current_update;
     Render();
   }

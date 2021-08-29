@@ -1,17 +1,21 @@
 #pragma once
 
-#include "SDL.h"
 #include "context.hpp"
+#include "interfaces/drawable.hpp"
+#include "interfaces/updatable.hpp"
 
 namespace NRFGame {
 
-class GameObject {
+class GameObject : public interfaces::Drawable, public interfaces::Updatable {
  protected:
   Context context_;
 
  public:
-  virtual void SetPosition(int x, int y) = 0;
-  virtual void Draw() = 0;
+  GameObject(const Context& context) : context_(context) {}
+
+  virtual void Create() override {}
+  virtual void Update(float delta) override {}
+  virtual void Destroy() override {}
 };
 
 }  // namespace NRFGame

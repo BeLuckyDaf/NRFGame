@@ -1,6 +1,8 @@
+#pragma once
+
 namespace NRFGame::interfaces {
 
-class IUpdate {
+class Updatable {
  public:
   virtual void Create() = 0;
   virtual void Update(float delta) = 0;
